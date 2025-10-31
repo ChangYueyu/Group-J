@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Admin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Teacher Admin Page</h1>
+        <p><a href="/logout" class="btn logout">Logout</a></p>
+
+        {% if students %}
+        <table>
+            <tr>
+                <th>Student</th>
+                <th>Score</th>
+                <th>Actions</th>
+            </tr>
+            {% for student, score in students.items() %}
+            <tr>
+                <td>{{ student }}</td>
+                <td>{{ score }}</td>
+                <td>
+                    <form method="post" style="display:inline">
+                        <input type="hidden" name="student_name" value="{{ student }}">
+                        <button name="action" value="add" class="btn add">+1</button>
+                        <button name="action" value="subtract" class="btn subtract">-1</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <form method="post" style="margin-top:20px;">
+            <button name="random_draw" value="1" class="btn random">🎲 Random Draw</button>
+        </form>
+
+        {% if selected_student %}
+            <p class="highlight">Selected Student: <strong>{{ selected_student }}</strong></p>
+        {% endif %}
+
+        {% else %}
+        <p>No students signed in yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

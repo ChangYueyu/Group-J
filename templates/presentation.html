@@ -1,0 +1,413 @@
+{% extends "base.html" %}
+{% block title %}Presentation | Project J{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-6 py-12">
+
+
+  <section class="mb-12 bg-green-50 p-6 rounded-2xl shadow-md">
+    <h1 class="text-3xl font-bold text-green-700 mb-4 text-center">Presentation Overview</h1>
+    <ul class="text-gray-800 space-y-2 text-lg">
+      <li>1️⃣ <strong>Cognitive Layer:</strong> Establishing a foundational understanding of Flask</li>
+      <li>2️⃣ <strong>Comprehension Layer (Part 02):</strong> Delving into core technical principles</li>
+      <li>3️⃣ <strong>Practical Layer (Part 03):</strong> Mastering concepts through hands-on projects</li>
+      <li>4️⃣ <strong>Advanced Layer (Part 04):</strong> Progression from Development to Deployment</li>
+      <li>5️⃣ <strong>Summary Layer (Part 05):</strong> Knowledge Consolidation and Rapid Review</li>
+    </ul>
+  </section>
+
+
+  <section class="space-y-12">
+
+  
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 1</h2>
+      <img src="{{ url_for('static', filename='images/1.png') }}" alt="Slide 1" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>The main title clearly outlines this tutorial's core objective:</strong> guiding learners with no prior programming experience to build their first personal website using the <strong>Flask framework</strong>.
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 2</h2>
+      <img src="{{ url_for('static', filename='images/2.png') }}" alt="Slide 2" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>1. Cognitive Layer:</strong> Establishing a foundational understanding of Flask<br>
+        <strong>2. Comprehension Layer (Part 02):</strong> Delving into core technical principles<br>
+        <strong>3. Practical Layer (Part 03):</strong> Mastering concepts through hands-on projects<br>
+        <strong>4. Advanced Level (Part 04):</strong> Progression from Development to Deployment<br>
+        <strong>5. Summary Level (Part 05):</strong> Knowledge Consolidation and Rapid Review
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 3</h2>
+      <img src="{{ url_for('static', filename='images/3.png') }}" alt="Slide 3" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>First Impressions of Flask</strong>
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 4</h2>
+      <img src="{{ url_for('static', filename='images/4.png') }}" alt="Slide 4" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>‘Lightweight’ positioning:</strong> Flask is not a comprehensive framework, providing only core functionality with extensions for additional features.<br>
+        <strong>‘Microframework’:</strong> Simple core that can be extended to enhance functionality.<br>
+        <strong>‘Dual-layer standard’:</strong> Adheres to WSGI and HTTP protocols, forming the foundation of Python web development.
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 5</h2>
+      <img src="{{ url_for('static', filename='images/5.png') }}" alt="Slide 5" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Line-by-Line Code Analysis:</strong><br>
+        · <strong>from flask import Flask:</strong> Imports the Flask class<br>
+        · <strong>app = Flask(__name__):</strong> Creates an application instance<br>
+        · <strong>@app.route(“/”):</strong> URL mapping to a function<br>
+        · <strong>def index(): return “Hello, Flask!”:</strong> View function returning a response<br>
+        · <strong>app.run():</strong> Launches development server<br>
+        · <strong>Access 127.0.0.1:5000:</strong> Localhost IP and default port
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 6</h2>
+      <img src="{{ url_for('static', filename='images/6.png') }}" alt="Slide 6" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Core Components</strong>
+      </p>
+    </div>
+
+ 
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 7</h2>
+      <img src="{{ url_for('static', filename='images/7.png') }}" alt="Slide 7" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Routing Introduction:</strong><br>
+        · URL mapping table locates handler functions<br>
+        · <strong>@app.route</strong> decorates functions as web endpoints<br>
+        · Routing = Controller layer in MVC<br><br>
+        <strong>Static vs Dynamic Routing:</strong><br>
+        · Static: fixed content<br>
+        · Dynamic: URL variables (<strong>&lt;username&gt;</strong>, <strong>&lt;int:user_id&gt;</strong>) for personalized responses
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 8</h2>
+      <img src="{{ url_for('static', filename='images/8.png') }}" alt="Slide 8" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Jinja2 Template Engine:</strong><br>
+        · Avoids HTML concatenation in code<br>
+        · {{ '{{ ... }}' }} outputs escaped content<br>
+        · {% raw %}{% ... %}{% endraw %} for logical control<br>
+        · Template inheritance enables base templates<br><br>
+        <strong>render_template() Workflow:</strong><br>
+        1. Search templates folder<br>
+        2. Create template context with Python variables<br>
+        3. Execute Jinja2 to generate HTML<br>
+        4. Return HTTP response<br>
+        · Pass multiple variables: <strong>render_template(“page.html”, name=name, age=age, items=items)</strong>
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 9</h2>
+      <img src="{{ url_for('static', filename='images/9.png') }}" alt="Slide 9" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Request object - Retrieving request data:</strong><br>
+        · GET: retrieve data, visible URL parameters<br>
+        · POST: submit data, hidden in body<br>
+        · request.args, request.form: MultiDict<br>
+        · request.json: requires Content-Type header<br>
+        · Ajax: update page without refresh
+      </p>
+    </div>
+ 
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 10</h2>
+      <img src="{{ url_for('static', filename='images/10.png') }}" alt="Slide 10" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Redirection and Session Persistence:</strong><br>
+        · HTTP status code <strong>302 Found</strong> instructs browser to redirect<br>
+        · <strong>Post/Redirect/Get</strong> prevents duplicate submissions<br>
+        · <strong>Session mechanism:</strong><br>
+        &nbsp;&nbsp;&nbsp;· Server stores session data<br>
+        &nbsp;&nbsp;&nbsp;· Session ID in cookie<br>
+        &nbsp;&nbsp;&nbsp;· Browser sends cookie on subsequent requests<br>
+        &nbsp;&nbsp;&nbsp;· Server locates session data via ID<br><br>
+        · <strong>app.secret_key:</strong> signs session cookie, prevents tampering<br>
+        · Use <strong>session dictionaries</strong> for state persistence<br>
+        · <strong>url_for()</strong>: generate URLs dynamically<br><br>
+        <strong>User Login Process:</strong><br>
+        1. Submit login form (POST)<br>
+        2. Validate credentials<br>
+        3. Record login in Session<br>
+        4. Redirect to backend page<br>
+        · Login state maintained until browser closes
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 11</h2>
+      <img src="{{ url_for('static', filename='images/11.png') }}" alt="Slide 11" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Actual code demonstration</strong>
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 12</h2>
+      <img src="{{ url_for('static', filename='images/12.png') }}" alt="Slide 12" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Project directory structure:</strong><br>
+        · <strong>static/</strong>: CSS, JS, images<br>
+        · <strong>templates/</strong>: Jinja2 files<br>
+        · <strong>app.py:</strong> Application entry<br>
+        · <strong>requirements.txt:</strong> dependencies<br>
+        · <strong>Virtual environment recommended</strong><br><br>
+        · <strong>Directory tree visualization:</strong><br>
+        &nbsp;&nbsp;&nbsp;· .py: Python code<br>
+        &nbsp;&nbsp;&nbsp;· .html: template<br>
+        &nbsp;&nbsp;&nbsp;· .css: style<br>
+        &nbsp;&nbsp;&nbsp;· .txt: config<br>
+        · Multiple HTML files correspond to different pages
+      </p>
+    </div>
+
+ 
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 13</h2>
+      <img src="{{ url_for('static', filename='images/13.png') }}" alt="Slide 13" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Student sign-in page data flow:</strong><br>
+        · Represents <strong>Create</strong> operation in CRUD<br>
+        · Complete Request-Response Cycle:<br>
+        1. Client POST request<br>
+        2. Server processes business logic<br>
+        3. Data preparation<br>
+        4. Response rendering<br>
+        · <strong>Dictionary</strong> as temporary storage<br><br>
+        · Four-step data flow:<br>
+        1. Form submission (frontend)<br>
+        2. Backend processing<br>
+        3. Page re-rendering (view)<br>
+        4. List display<br>
+        · Demonstrates <strong>frontend-backend separation principle</strong>
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 14</h2>
+      <img src="{{ url_for('static', filename='images/14.png') }}" alt="Slide 14" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Core Student Sign-in Logic:</strong><br>
+        · <strong>success.html:</strong> results display via Jinja2<br>
+        · <strong>app.py:</strong> business logic<br>
+        · <strong>MVC pattern:</strong><br>
+        &nbsp;&nbsp;&nbsp;· Model: in-memory dictionary<br>
+        &nbsp;&nbsp;&nbsp;· View: HTML templates<br>
+        &nbsp;&nbsp;&nbsp;· Controller: app.py view functions
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 15</h2>
+      <img src="{{ url_for('static', filename='images/15.png') }}" alt="Slide 15" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Feature Demonstration - Student Interface:</strong><br>
+        · <strong>Single Responsibility Principle:</strong> only core sign-in functionality<br>
+        · <strong>User Experience:</strong> simple form submission<br>
+        · <strong>Data Flow:</strong> from frontend form to backend storage
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 16</h2>
+      <img src="{{ url_for('static', filename='images/16.png') }}" alt="Slide 16" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Backend - Login Interception & Form Rendering:</strong><br>
+        · <strong>Permission Control:</strong> verify user before access<br>
+        · <strong>Login Interception Code:</strong>
+        <pre>
+@app.route("/admin")
+def admin():
+    if "user" not in session:
+        return redirect(url_for("login"))
+        </pre>
+        · <strong>Table Rendering:</strong> dynamic HTML table using Jinja2 loops
+      </p>
+    </div>
+
+   
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 17</h2>
+      <img src="{{ url_for('static', filename='images/17.png') }}" alt="Slide 17" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Feature Demonstration - Teacher Edition:</strong><br>
+        · <strong>Multi-Role System:</strong> different functions per user type<br>
+        · <strong>Teacher Privileges:</strong> elevated permissions<br>
+        · <strong>Feature Aggregation:</strong> teacher interface integrates multiple management functions
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 18</h2>
+      <img src="{{ url_for('static', filename='images/18.png') }}" alt="Slide 18" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Points Adjustment Functionality:</strong><br>
+        · Increased business logic complexity<br>
+        · <strong>In-Memory Dictionary Limitations:</strong> data fragility, sharing issues, capacity constraints<br>
+        · <strong>Database introduction necessary</strong>
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 19</h2>
+      <img src="{{ url_for('static', filename='images/19.png') }}" alt="Slide 19" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Random Roll Call Functionality:</strong><br>
+        · Uses <strong>Python random module</strong><br>
+        · Transforms from passive to active classroom interaction<br>
+        · Example code:
+        <pre>
+import random
+@app.route("/random_call")
+def random_call():
+    students = list(student_dict.keys())
+    chosen = random.choice(students)
+    return f'The student called this time is: {chosen}'
+        </pre>
+      </p>
+    </div>
+
+ 
+<div class="bg-white p-6 rounded-2xl shadow-md">
+  <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 20</h2>
+  <img src="{{ url_for('static', filename='images/20.png') }}" alt="Slide 20" class="w-full rounded-md shadow-md mb-4">
+  <p class="text-gray-700 leading-relaxed">
+    <strong>Functionality Integration Demonstration:</strong><br>
+    · <strong>Comprehensive system:</strong> a complete classroom management application<br>
+    · <strong>Technology coverage:</strong> routing, templating, form processing, session management<br>
+    · <strong>Practical significance:</strong> illustrates Flask’s real-world capabilities through a unified project<br>
+    · <strong>Educational value:</strong> helps learners consolidate multiple concepts in a single demonstration
+  </p>
+</div>
+
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 21</h2>
+      <img src="{{ url_for('static', filename='images/21.png') }}" alt="Slide 21" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Deployment and Scaling Overview</strong>
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 22</h2>
+      <img src="{{ url_for('static', filename='images/22.png') }}" alt="Slide 22" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Production Environment Deployment:</strong><br>
+        · <strong>Development vs Production:</strong> debugging convenience vs performance, stability, security<br>
+        · <strong>WSGI Servers:</strong> concurrent request handling, process management, performance enhancement<br><br>
+        <strong>WSGI Server Selection:</strong><br>
+        &nbsp;&nbsp;&nbsp;· Waitress: pure Python, cross-platform, simple<br>
+        &nbsp;&nbsp;&nbsp;· Gunicorn: Unix pre-fork, high performance<br>
+        &nbsp;&nbsp;&nbsp;· app:app → module name + Flask instance<br>
+        &nbsp;&nbsp;&nbsp;· Binding 0.0.0.0 → accessible from all IPs
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 23</h2>
+      <img src="{{ url_for('static', filename='images/23.png') }}" alt="Slide 23" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Security Configuration:</strong><br>
+        · <strong>Debug mode risks:</strong> exposes source code and variables<br>
+        · <strong>SECRET_KEY best practices:</strong><br>
+        &nbsp;&nbsp;&nbsp;· Generate via os.urandom(24)<br>
+        &nbsp;&nbsp;&nbsp;· Configure via environment variables<br>
+        &nbsp;&nbsp;&nbsp;· Use distinct keys for production & development
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 24</h2>
+      <img src="{{ url_for('static', filename='images/24.png') }}" alt="Slide 24" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Extensibility Directions:</strong><br>
+        · <strong>Flask Extension Ecosystem:</strong> thousands on PyPI<br>
+        · <strong>Three extension directions:</strong><br>
+        &nbsp;&nbsp;&nbsp;1. Data Persistence: Flask-SQLAlchemy, Flask-MongoEngine<br>
+        &nbsp;&nbsp;&nbsp;2. User Authentication: Flask-Login, Flask-Security<br>
+        &nbsp;&nbsp;&nbsp;3. Asynchronous Interaction: Flask-SocketIO, Ajax<br>
+        · <strong>Microservice potential:</strong> lightweight nature suits microservice architecture
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 25</h2>
+      <img src="{{ url_for('static', filename='images/25.png') }}" alt="Slide 25" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Four-Step Website Development Summary:</strong><br>
+        · <strong>Minimised learning path:</strong> Flask’s gentle learning curve<br>
+        · <strong>Instant feedback:</strong> see results immediately<br>
+        · <strong>Call to action:</strong> hands-on practice, aligns with “Learning by Doing”
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 26</h2>
+      <img src="{{ url_for('static', filename='images/26.png') }}" alt="Slide 26" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Core API Quick Reference:</strong><br>
+        · Most frequently imported modules: cover 90% of development needs<br>
+        · <strong>Flash messages:</strong> one-off status notifications<br>
+        · <strong>Debug Mode:</strong> development only<br>
+        · <strong>Reference value:</strong> quick lookup during coding
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 27</h2>
+      <img src="{{ url_for('static', filename='images/27.png') }}" alt="Slide 27" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>Q&A:</strong><br>
+        This 28-page detailed breakdown integrates <strong>surface content</strong>, <strong>technical principles</strong>, <strong>best practices</strong>, and <strong>pedagogical concepts</strong>. Suitable for learners and educators alike.
+      </p>
+    </div>
+
+
+    <div class="bg-white p-6 rounded-2xl shadow-md">
+      <h2 class="text-2xl font-semibold text-green-700 mb-4">Slide 28</h2>
+      <img src="{{ url_for('static', filename='images/28.png') }}" alt="Slide 28" class="w-full rounded-md shadow-md mb-4">
+      <p class="text-gray-700 leading-relaxed">
+        <strong>That concludes the overview.</strong>
+      </p>
+    </div>
+
+    {% endblock %} 
+

@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+{% block title %}Flask Tutorial — Build a Student Sign-In Website{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-6 py-12 space-y-12">
+
+  <section class="bg-white p-6 rounded-2xl shadow-md space-y-6">
+    <h2 class="text-2xl font-semibold text-green-700 mb-4">0. Waitress vs Gunicorn — Understanding Production Servers</h2>
+
+    <h3 class="text-xl font-bold text-green-600">0.1 Why Do We Need Production Servers?</h3>
+    <p>
+      Flask’s built-in server (<code>app.run(debug=True)</code>) is lightweight and designed only for development.
+      It automatically reloads code and provides helpful debugging pages, but it cannot handle high traffic, parallel
+      requests, or security optimizations. In real deployment, we need a <strong>WSGI (Web Server Gateway Interface)</strong> server
+      to act as the bridge between Flask and the web.
+    </p>
+    <p>
+      Two of the most popular production servers for Flask are <strong>Waitress</strong> (commonly used on Windows)
+      and <strong>Gunicorn</strong> (commonly used on Linux/Unix). Both make Flask apps ready for public access and
+      improve performance, stability, and scalability.
+    </p>
+
+    <h3 class="text-xl font-bold text-green-600">0.2 Comparison Overview</h3>
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-200 text-sm text-left">
+        <thead class="bg-green-100">
+          <tr>
+            <th class="border p-2">Feature</th>
+            <th class="border p-2">Waitress</th>
+            <th class="border p-2">Gunicorn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border p-2">Platform Support</td>
+            <td class="border p-2">Cross-platform (Windows, macOS, Linux)</td>
+            <td class="border p-2">Primarily Linux/Unix (limited Windows support)</td>
+          </tr>
+          <tr>
+            <td class="border p-2">Performance</td>
+            <td class="border p-2">High stability, fewer tuning options</td>
+            <td class="border p-2">High concurrency and customizable workers</td>
+          </tr>
+          <tr>
+            <td class="border p-2">Ease of Setup</td>
+            <td class="border p-2">Very simple — one-line startup</td>
+            <td class="border p-2">More configuration options (worker count, logging, etc.)</td>
+          </tr>
+          <tr>
+            <td class="border p-2">Thread vs Process Model</td>
+            <td class="border p-2">Thread-based</td>
+            <td class="border p-2">Process-based (can use multiple worker processes)</td>
+          </tr>
+          <tr>
+            <td class="border p-2">Best Use Case</td>
+            <td class="border p-2">Windows or small/medium-scale internal apps</td>
+            <td class="border p-2">Linux production servers and scalable web apps</td>
+          </tr>
+          <tr>
+            <td class="border p-2">Installation</td>
+            <td class="border p-2"><code>pip install waitress</code></td>
+            <td class="border p-2"><code>pip install gunicorn</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="text-xl font-bold text-green-600">0.3 Practical Usage Examples</h3>
+    <p>After installation, run your Flask app in production mode with these commands:</p>
+
+    <pre class="bg-gray-100 p-4 rounded-xl shadow-inner text-sm">
+# ▶ Using Waitress (best for Windows)
+waitress-serve --listen=0.0.0.0:5000 app:app
+
+# ▶ Using Gunicorn (best for Linux)
+gunicorn --bind 0.0.0.0:5000 --workers=4 app:app
+    </pre>
+
+    <ul class="list-disc list-inside space-y-2">
+      <li><strong>--listen / --bind</strong> : Specifies the IP and port.</li>
+      <li><strong>--workers</strong> : Number of worker processes (Gunicorn only).</li>
+      <li><strong>app:app</strong> : Refers to the Python file and the Flask instance inside it.</li>
+    </ul>
+
+    <h3 class="text-xl font-bold text-green-600">0.4 Which One Should You Choose?</h3>
+    <p>
+      - If you're using <strong>Windows</strong> or want a simple deployment: choose <span class="text-green-700 font-semibold">Waitress</span>.  
+      - If you're deploying on <strong>Linux</strong> or a cloud server (like AWS, EC2, or Heroku): choose <span class="text-green-700 font-semibold">Gunicorn</span> for better concurrency.  
+      - In most team or production environments, Gunicorn is the default due to its scalability, logging, and compatibility with Nginx reverse proxies.
+    </p>
+
+    <h3 class="text-xl font-bold text-green-600">0.5 Summary</h3>
+    <p>
+      Waitress and Gunicorn both transform Flask’s lightweight development server into a robust production environment.
+      The choice mainly depends on your platform and scalability needs:  
+      <strong>Waitress = Stability & Simplicity</strong> 
+      <strong>Gunicorn = Performance & Scalability</strong> 
+    </p>
+  </section>
+
+  <section class="bg-green-50 p-6 rounded-2xl shadow-md">
+    <h2 class="text-2xl font-semibold text-green-700 mb-4">1. Objective</h2>
+    <p>This tutorial introduces the basic workflow of Flask web development. Students will learn to create a simple student sign-in website and understand how Flask handles routing, templates, forms, and session management.</p>
+  </section>
+
+  <section class="bg-white p-6 rounded-2xl shadow-md">
+    <h2 class="text-2xl font-semibold text-green-700 mb-4">2. Learning Outcomes</h2>
+    <ul class="list-disc list-inside space-y-2">
+      <li>Install and configure the Flask development environment.</li>
+      <li>Create and run a basic Flask web application.</li>
+      <li>Use the Jinja2 template engine to design dynamic web pages and handle user input.</li>
+      <li>Utilize session technology to manage user state and render dynamic content.</li>
+      <li>Understand the basics of data persistence and production environment deployment.</li>
+    </ul>
+  </section>
+
+  <section class="bg-green-50 p-6 rounded-2xl shadow-md space-y-6">
+    <h2 class="text-2xl font-semibold text-green-700 mb-4">3. Environment Setup</h2>
+    <p>Python 3.8 or higher is required. Install Flask using the command below:</p>
+
+    <p>3.1 Open the VSCode terminal or press the shortcut key Ctrl + `, then enter the following command in the terminal to create a virtual environment.</p>
+    <img src="{{ url_for('static', filename='images/29.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <p>3.2 Activate the virtual environment: Taking Windows as an example</p>
+    <img src="{{ url_for('static', filename='images/30.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <p>3.3 Install flask: After ensuring the virtual environment is activated, enter the following command in the terminal to install flask.</p>
+    <img src="{{ url_for('static', filename='images/31.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <p>3.4 Recommended folder structure:</p>
+    <img src="{{ url_for('static', filename='images/32.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+  </section>
+
+  <section class="bg-white p-6 rounded-2xl shadow-md space-y-6">
+    <h2 class="text-2xl font-semibold text-green-700 mb-4">4. Core Components</h2>
+
+    <h3 class="text-xl font-bold text-green-600">4.1 Routing (Static / Dynamic):</h3>
+    <p>@app.route('/about')<br>
+    Static routing: Fixed URL — Fixed view function, suitable for pages like "About/Help".<br>
+    @app.route('/user/')<br>
+    Dynamic routing: Often used to receive path variables</p>
+    <img src="{{ url_for('static', filename='images/33.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <h3 class="text-xl font-bold text-green-600">4.2 Jinja2 Templates: Inheritance and Loop</h3>
+    <p>templet：{% raw %}{% for item in items %}  {{ item }} {% endfor %}{% endraw %}<br>
+    Jinja2 template syntax: {% raw %}{% for %}{% endraw %} for loops, {{ item }} outputs variable values; rendering occurs on the server side, returning pure HTML.<br>
+    Templates allow embedding Python variables into HTML, achieving separation of business logic and presentation layer.</p>
+    <img src="{{ url_for('static', filename='images/34.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <p>Render the template in the view function:<br>
+    return render_template('list.html', items=my_list)<br>
+    Read list.html from the templates directory, inject items=my_list; achieve the separation of "logic (Python) / presentation (HTML)".</p>
+
+    <h3 class="text-xl font-bold text-green-600">4.3 Receiving browser data</h3>
+    <img src="{{ url_for('static', filename='images/35.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+    <img src="{{ url_for('static', filename='images/36.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+    <p>This primarily utilizes request.form for scenarios such as reading student and teacher data login submission forms.</p>
+
+    <h3 class="text-xl font-bold text-green-600">4.4 Redirects & Session (the three lines from PPT)</h3>
+    <img src="{{ url_for('static', filename='images/37.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+    <p>Enable session signing (and some security features); production environments must use complex random values.</p>
+    <img src="{{ url_for('static', filename='images/38.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <p>Write the login username into the session to achieve "cross-request" login state persistence.<br>
+    Login successful, writing to teacher_logged_in</p>
+    <img src="{{ url_for('static', filename='images/39.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <p>PRG (Post/Redirect/Get) Pattern: Redirect after form submission to prevent duplicate submissions caused by refreshing<br>
+    Login successful redirect</p>
+    <img src="{{ url_for('static', filename='images/40.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+    <img src="{{ url_for('static', filename='images/41.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+  <section class="bg-green-50 p-6 rounded-2xl shadow-md space-y-6">
+    <h2 class="text-2xl font-semibold text-green-700 mb-4">5. Practical Code</h2>
+
+    <h3 class="text-xl font-bold text-green-600">5.1 Project Directory Structure</h3>
+    <img src="{{ url_for('static', filename='images/42.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <h3 class="text-xl font-bold text-green-600">5.2 Student Sign-In Page Core Logic</h3>
+    <p>Initialize the first occurrence of a name to 0 points to avoid errors (missing key) when adding/subtracting points later.<br>
+    Students is an in-memory dictionary for demonstration purposes: data will be lost upon restart.</p>
+    <img src="{{ url_for('static', filename='images/43.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <p><strong>success.html</strong></p>
+    <img src="{{ url_for('static', filename='images/44.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <p><strong>app.py</strong></p>
+    <img src="{{ url_for('static', filename='images/45.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <p><strong>Functionality demo(Student Edition)</strong></p>
+    <img src="{{ url_for('static', filename='images/46.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <h3 class="text-xl font-bold text-green-600">5.3 Teacher Portal</h3>
+    <p>Iterate students dict in a table and add an action button for each row.<br>
+    Render students.items() in a table row by row; place "+1/-1" buttons in each row (hidden fields carry the name).</p>
+    <p>Upon receiving a POST request, the backend adjusts the scores and redirects back to this page to display the latest scores.</p>
+    <img src="{{ url_for('static', filename='images/47.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <p><strong>app.py</strong></p>
+    <img src="{{ url_for('static', filename='images/48.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <p><strong>Feature Demo (Teacher Edition)</strong></p>
+    <img src="{{ url_for('static', filename='images/49.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <h3 class="text-xl font-bold text-green-600">5.4 Bonus/Penalty & Random Roll Call</h3>
+    <p>Trigger button：flask/templates/admin.html<br>
+    Form name= random_draw (Bottom random button)</p>
+    <img src="{{ url_for('static', filename='images/50.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+
+    <p>Random selection logic: flask/app.py displays the selected result after execution</p>
+    <img src="{{ url_for('static', filename='images/51.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+  </section>
+
+  <section class="bg-white p-6 rounded-2xl shadow-md space-y-6">
+    <h2 class="text-2xl font-semibold text-green-700 mb-4">6. Deployment & Scaling</h2>
+
+    <h3 class="text-xl font-bold text-green-600">6.1 Production environment startup commands</h3>
+    <p>Flask's built-in development server is not suitable for production. We can use Waitress or Gunicorn.</p>
+    <pre class="bg-gray-100 p-4 rounded-xl shadow-inner text-sm">
+pip install waitress
+waitress-serve --port=5000 app:app
+
+pip install gunicorn
+gunicorn --bind 0.0.0.0:5000 app:app
+    </pre>
+
+    <h3 class="text-xl font-bold text-green-600">6.2 Development & Security</h3>
+    <img src="{{ url_for('static', filename='images/52.png') }}" class="my-8 mx-auto rounded-xl shadow-md">
+    <ul class="list-disc list-inside space-y-2">
+      <li>Debug Mode: Set ‘debug=True’ during development for hot reloading and detailed error pages.</li>
+      <li>Secret Key Management: The ‘SECRET_KEY’ is crucial for session security. It must be a strong random value and must never be committed to a public repository.</li>
+    </ul>
+  </section>
+
+  
+  <section class="bg-green-50 p-6 rounded-2xl shadow-md space-y-4">
+    <h2 class="text-2xl font-semibold text-green-700 mb-4">7. Running the Application</h2>
+    <ol class="list-decimal list-inside space-y-2">
+      <li>Run the following command in your terminal: python app.py</li>
+      <li>Then open http://127.0.0.1:5000 in your browser.</li>
+      <li>Try signing in with a name, and observe the attendance list and admin functions.</li>
+    </ol>
+  </section>
+
+
+  <section class="bg-white p-6 rounded-2xl shadow-md space-y-4">
+    <h2 class="text-2xl font-semibold text-green-700 mb-4">8. Discussion and Extensions</h2>
+    <p>This exercise demonstrates how Flask integrates Python with web interfaces. Possible improvements include adding database support with SQLite, login features using Flask-Login, and asynchronous updates via AJAX.</p>
+  </section>
+
+
+  <section class="bg-green-50 p-6 rounded-2xl shadow-md space-y-4">
+    <h2 class="text-2xl font-semibold text-green-700 mb-4">9. Conclusion</h2>
+    <p>Through this tutorial, learners can understand the foundation of Flask web development and gain confidence to expand into more complex web applications.</p>
+  </section>
+ß
+  <section class="bg-white p-6 rounded-2xl shadow-md space-y-4">
+    <h2 class="text-2xl font-semibold text-green-700 mb-4">10. References</h2>
+    <ul class="list-disc list-inside space-y-2">
+      <li>Albesher, L., & Alfayez, R. (2024). An Observational Study on Flask Web Framework Questions on Stack Overflow (SO). IET Software.</li>
+      <li>Bonney, M., de Angelis, M., Dal Borgo, M., Andrade, L., Beregi, S., Jamia, N., & Wagg, D. (2022). Development of a Digital Twin Operational Platform Using Python Flask. Data-Centric Engineering.</li>
+      <li>Liang, Z., Liang, Z., Zheng, Y., Liang, B., & Zheng, L. (2021). Data Analysis and Visualization Platform Design for Batteries Using Flask-Based Python Web Service. World Electric Vehicle Journal.</li>
+      <li>Zhang, D., & You, S. (2020). iFlask: Isolate Flask Security System from Dangerous Execution Environment by Using ARM TrustZone. Future Generation Computer Systems.</li>
+      <li>Guirales, S., Machado, D., Schneider, A., & Janies, D. (2020). FLAVi-Web: A Web Annotator for Viral Genomes of Flaviviridae with Flask. The FASEB Journal.</li>
+      <li>Wang, Z., Xiang, H., & Zhang, L. (2024). Design of a Classroom Big Data Analysis System Based on Open Source Technology. ICEIT.</li>
+      <li>Li, Z. (2023). The Construction of Online Learning System Based on Flask.</li>
+      <li>DeCausemaker, R., & Jacobs, S. (2015).</li>
+      <li>Landschaft, O., & Wishkerman, A. (2024). FlaskLED: An Additive Manufacturing Approach for Low-Cost Bioreactors. Journal of Applied Phycology.</li>
+    </ul>
+  </section>
+
+  {{ super() }}
+
+</div>
+{% endblock %}
